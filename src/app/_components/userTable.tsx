@@ -23,7 +23,7 @@ type FieldType = {
   age?: number;
 };
 
-const UserTable = ({ userData }: { userData: userType[] }) => {
+const UserTable = () => {
   const [form] = Form.useForm();
   const [buttonpress, setButtonPress] = useState<string | undefined>(undefined);
   const [userId, setUserId] = useState<number | undefined>(undefined);
@@ -100,7 +100,7 @@ const UserTable = ({ userData }: { userData: userType[] }) => {
   const updateUser = api.post.updateUser.useMutation({
     onSuccess: async () => {
       try {
-        window.alert("User Successfully deleted");
+        window.alert("User Successfully Updated");
         await refetch();
         setIsModalOpen(false);
         form.resetFields();
@@ -141,7 +141,7 @@ const UserTable = ({ userData }: { userData: userType[] }) => {
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     const { firstname, lastname, address, age } = values;
 
-    buttonpress === "create"
+    buttonpress === "add"
       ? createUser.mutate({
           firstname: firstname ?? "",
           lastname: lastname ?? "",
